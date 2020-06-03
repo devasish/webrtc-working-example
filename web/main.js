@@ -1,5 +1,5 @@
 // Config variables: change them to point to your own servers
-const SIGNALING_SERVER_URL = 'http://localhost:9999';
+const SIGNALING_SERVER_URL = 'http://localhost:3000';
 const TURN_SERVER_URL = 'localhost:3478';
 const TURN_SERVER_USERNAME = 'username';
 const TURN_SERVER_CREDENTIAL = 'credential';
@@ -43,6 +43,7 @@ let sendData = (data) => {
 let pc;
 let localStream;
 let remoteStreamElement = document.querySelector('#remoteStream');
+//let localStreamElement = document.querySelector('#localStream');
 
 let getLocalStream = () => {
   navigator.mediaDevices.getUserMedia({ audio: true, video: true })
@@ -50,6 +51,7 @@ let getLocalStream = () => {
       console.log('Stream found');
       localStream = stream;
       // Connect after making sure that local stream is availble
+//      localStreamElement.srcObject = localStream
       socket.connect();
     })
     .catch(error => {
